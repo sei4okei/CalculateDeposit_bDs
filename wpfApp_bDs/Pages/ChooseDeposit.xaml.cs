@@ -20,6 +20,7 @@ namespace wpfApp_bDs.Pages
     public partial class ChooseDeposit : Window
     {
         CalculateDeposit win = new CalculateDeposit();
+
         public ChooseDeposit()
         {
             InitializeComponent();

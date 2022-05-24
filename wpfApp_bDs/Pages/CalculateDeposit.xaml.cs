@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using wpfApp_bDs.Logic;
 
 namespace wpfApp_bDs.Pages
 {
@@ -19,18 +20,16 @@ namespace wpfApp_bDs.Pages
     /// </summary>
     public partial class CalculateDeposit : Window
     {
+        AnalasisDeposit win = new AnalasisDeposit();
 
-        const double stable = 0.08;
-        const double optim = 0.05;
-        const double stand = 0.06;
-
-        public string stableProfit { get; set; }
-        public string optimProfit { get; set; }
-        public string standProfit { get; set; }
+        const double StablePercent = 0.08;
+        const double OptimalPercent = 0.05;
+        const double StandardPercent = 0.06;
 
         public CalculateDeposit()
         {
             InitializeComponent();
+            Application.Current.ShutdownMode = ShutdownMode.OnMainWindowClose;
         }
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
@@ -40,26 +39,63 @@ namespace wpfApp_bDs.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            
+            win.Owner = this;
+            this.Hide();
+            win.Show();
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                MathDeposit();
+                if (PeriodSlider.Value <= 90)
+                {
+                    Stable.Text = "Маленький срок";
+                    Optimal.Text = "Маленький срок";
+                    Standard.Text = "Маленький срок";
+
+                }
+                else if (PeriodSlider.Value <= 180)
+                {
+                    Stable.Text = (Calculate.Profit(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value, StablePercent)).ToString() + " Руб.";
+                    Optimal.Text = "Маленький срок";
+                    Standard.Text = (Calculate.Profit(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value, StandardPercent)).ToString() + " Руб.";
+
+                    SendInfo();
+                }
+                else
+                {
+                    Stable.Text = (Calculate.Profit(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value, StablePercent)).ToString() + " Руб.";
+                    Optimal.Text = (Calculate.Profit(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value, OptimalPercent)).ToString() + " Руб.";
+                    Standard.Text = (Calculate.Profit(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value, StandardPercent)).ToString() + " Руб.";
+
+                    SendInfo();
+                }
             }
-            
         }
 
-        public void MathDeposit()
+        private void SendInfo()
         {
-            stableProfit = (Math.Round((Convert.ToDouble(slValue1.Value)/30 * Convert.ToDouble(slValue2.Value) + Convert.ToDouble(slValue.Value)) * ((Convert.ToDouble(slValue1.Value)/ 30 / 12) * stable))).ToString();
-            StableText.Text = stableProfit;
-            stableProfit = (Math.Round((Convert.ToDouble(slValue1.Value) / 30 * Convert.ToDouble(slValue2.Value) + Convert.ToDouble(slValue.Value)) * ((Convert.ToDouble(slValue1.Value) / 30 / 12) * optim))).ToString();
-            OptimText.Text = stableProfit;
-            standProfit = (Math.Round((Convert.ToDouble(slValue1.Value) / 30 * Convert.ToDouble(slValue2.Value) + Convert.ToDouble(slValue.Value)) * ((Convert.ToDouble(slValue1.Value) / 30 / 12) * stand))).ToString();
-            StandText.Text = stableProfit;
+            win.StableProfitView.Text = Stable.Text;
+            if (PeriodSlider.Value >= 180)
+            {
+                win.OptimalProfitView.Text = Optimal.Text;
+            }
+            win.StandardProfitView.Text = Standard.Text;
+
+            win.StableSummaryView.Text = (Convert.ToInt32((Stable.Text).Replace(" Руб.", "")) + Convert.ToInt32(Calculate.Summary(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value))).ToString() + " Руб.";
+            if (PeriodSlider.Value >= 180)
+            {
+                win.OptimalSummaryView.Text = (Convert.ToInt32((Optimal.Text).Replace(" Руб.", "")) + Convert.ToInt32(Calculate.Summary(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value))).ToString() + " Руб.";
+            }
+            win.StandardSummaryView.Text = (Convert.ToInt32((Standard.Text).Replace(" Руб.", "")) + Convert.ToInt32(Calculate.Summary(SummarySlider.Value, PeriodSlider.Value, DepositsSlider.Value))).ToString() + " Руб.";
+
+            win.StablePercentView.Text = (StablePercent * 100).ToString() + " % Руб.";
+            if (PeriodSlider.Value >= 180)
+            {
+                win.OptimalPercentView.Text = (OptimalPercent * 100).ToString() + " % Руб.";
+            }
+            win.StandardPercentView.Text = (StandardPercent * 100).ToString() + " % Руб.";
         }
     }
 }

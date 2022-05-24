@@ -22,6 +22,7 @@ namespace wpfApp_bDs
     public partial class MainWindow : Window
     {
         ChooseDeposit win = new ChooseDeposit();
+
         public MainWindow()
         {
             InitializeComponent();

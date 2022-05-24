@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfApp_bDs.Pages"
         mc:Ignorable="d"
-        Title="CalculateDeposit" Height="450" Width="800"
+        Title="Калькулятор вкладов" Height="450" Width="600"
         ResizeMode="NoResize">
     <Grid KeyDown="Grid_KeyDown">
         <Grid.ColumnDefinitions>
@@ -27,37 +27,43 @@
                    VerticalAlignment="Center"/>
         <TextBlock Text="Сумма" Grid.Row="1" Grid.Column="0"
                    FontSize="20" Padding="20,10"/>
-        <TextBox x:Name="Summary" Height="30" Width="320"
-                 Grid.Column="0" Grid.Row="1" Grid.RowSpan="2"
-                 Margin="22,40,54,36" Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
+        <TextBox x:Name="Summary" Height="30" Width="256"
+                 Grid.Column="0" Grid.Row="1" Grid.RowSpan="4"
+                 Margin="22,0,10,95" Text="{Binding ElementName=SummarySlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
                  FontWeight="SemiBold"/>
-        <Slider Name="slValue" Value="0" Minimum="0" Maximum="10000000" SelectionStart="0" Height="30" 
+        <TextBlock Text="Руб." FontWeight="SemiBold" FontSize="18" Grid.Row="1"
+                   Grid.RowSpan="4" Margin="240,43,10,95"/>
+        <Slider Name="SummarySlider" Value="0" Minimum="0" Maximum="10000000" SelectionStart="0" Height="30" 
                 IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged"
-                Grid.Row="2" Grid.Column="0" Width="320"
-                Margin="22,17,54,6" TickFrequency="10000"
+                Grid.Row="2" Grid.Column="0" Width="256"
+                Margin="22,21,10,6" TickFrequency="10000"
                 IsSnapToTickEnabled="True"/>
         <TextBlock Text="Срок" Grid.Row="3" Grid.Column="0"
                    FontSize="20" Padding="20,10"/>
-        <TextBox x:Name="Date" Height="30" Width="320"
+        <TextBox x:Name="Period" Height="30" Width="256"
                  Grid.Column="0" Grid.Row="2" Grid.RowSpan="4"
-                 Margin="22,40,54,36" Text="{Binding ElementName=slValue1, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
+                 Margin="22,40,10,36" Text="{Binding ElementName=PeriodSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
                  FontWeight="SemiBold"/>
-        <Slider Name="slValue1" Value="0" Minimum="1" Maximum="1800" SelectionStart="0" Height="30" 
+        <TextBlock Text="дней" FontWeight="SemiBold" FontSize="18" Grid.Row="3"
+                   Grid.RowSpan="4" Margin="235,40,10,95"/>
+        <Slider Name="PeriodSlider" Value="0" Minimum="1" Maximum="1800" SelectionStart="0" Height="30" 
                 IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged"
-                Grid.Row="4" Grid.Column="0" Width="320"
-                Margin="22,17,54,6" TickFrequency="30"
+                Grid.Row="4" Grid.Column="0" Width="256"
+                Margin="22,20,10,6" TickFrequency="30"
                 IsSnapToTickEnabled="True"/>
         <TextBlock Text="Ежемесячный пополнения" Grid.Row="5" Grid.Column="0"
                    FontSize="20" Padding="20,10"/>
-        <TextBox x:Name="Deposit" Height="30" Width="320"
+        <TextBox x:Name="Deposits" Height="30" Width="256"
                  Grid.Column="0" Grid.Row="4" Grid.RowSpan="4"
-                 Margin="22,40,54,36" Text="{Binding ElementName=slValue2, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
+                 Margin="22,40,10,36" Text="{Binding ElementName=DepositsSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" FontSize="18"
                  FontWeight="SemiBold"/>
-        <Slider Name="slValue2" Value="0" Minimum="0" Maximum="5000000" SelectionStart="0" Height="30" 
+        <Slider Name="DepositsSlider" Value="0" Minimum="0" Maximum="5000000" SelectionStart="0" Height="30" 
                 IsSelectionRangeEnabled="True" ValueChanged="Slider_ValueChanged"
-                Grid.Row="6" Grid.Column="0" Width="320"
-                Margin="22,17,54,6" TickFrequency="5000"
+                Grid.Row="6" Grid.Column="0" Width="256"
+                Margin="22,20,10,6" TickFrequency="5000"
                 IsSnapToTickEnabled="True"/>
+        <TextBlock Text="Руб." FontWeight="SemiBold" FontSize="18" Grid.Row="4"
+                   Grid.RowSpan="5" Margin="240,90,10,95"/>
         <Label Content="Деньги в каждый карман" FontStyle="Italic"
                FontSize="20" Grid.Column="1" Grid.ColumnSpan="2"
                Grid.Row="0" HorizontalAlignment="Right"/>
@@ -68,15 +74,14 @@
             </Rectangle.Effect>
         </Rectangle>
         <TextBlock Text="Стабильный" Grid.Row="1" Grid.Column="1"
-                   FontSize="22" FontWeight="SemiBold" Margin="50,0,0,0"
-                   x:Name="Stable"/>
+                   FontSize="22" FontWeight="SemiBold" Margin="50,0,0,0"/>
         <TextBlock Text="Доход:" Grid.Row="1" Grid.Column="1"
                    FontFamily="20" Margin="50,30,0,0"/>
         <TextBlock Text="50000" Grid.Column="1" Grid.Row="1"
                    Grid.RowSpan="3" FontSize="20"
                    FontWeight="SemiBold" Margin="50,43"
-                   x:Name="StableText"/>
-        <Rectangle Height="1" Width="296" Grid.Column="1"
+                   x:Name="Stable"/>
+        <Rectangle Height="1" Width="196" Grid.Column="1"
                    Grid.Row="2" Fill="RoyalBlue" Margin="0,0,0,15"/>
         <TextBlock Text="Оптимальный" Grid.Row="3" Grid.Column="1"
                    FontSize="22" FontWeight="SemiBold" Margin="50,0,0,0"/>
@@ -85,8 +90,8 @@
         <TextBlock Text="50000" Grid.Column="1" Grid.Row="3"
                    Grid.RowSpan="3" FontSize="20"
                    FontWeight="SemiBold" Margin="50,43"
-                   x:Name="OptimText"/>
-        <Rectangle Height="1" Width="296" Grid.Column="1"
+                   x:Name="Optimal"/>
+        <Rectangle Height="1" Width="196" Grid.Column="1"
                    Grid.Row="4" Fill="RoyalBlue" Margin="0,0,0,15"/>
         <TextBlock Text="Стандарт" Grid.Row="5" Grid.Column="1"
                    FontSize="22" FontWeight="SemiBold" Margin="50,0,0,0"/>
@@ -95,12 +100,12 @@
         <TextBlock Text="50000" Grid.Column="1" Grid.Row="5"
                    Grid.RowSpan="3" FontSize="20"
                    FontWeight="SemiBold" Margin="50,43"
-                   x:Name="StandText"/>
-        <Rectangle Height="1" Width="296" Grid.Column="1"
+                   x:Name="Standard"/>
+        <Rectangle Height="1" Width="196" Grid.Column="1"
                    Grid.Row="6" Fill="RoyalBlue" Margin="0,0,0,15"/>
         <Button Content="Сравнить параметры" Grid.Column="1"
                 Grid.Row="6" Grid.RowSpan="2" Height="25" Width="176"
-                Margin="110, 0" Background="RoyalBlue" Foreground="White"
+                Background="RoyalBlue" Foreground="White"
                 FontWeight="SemiBold" Click="Button_Click"/>
     </Grid>
 </Window>

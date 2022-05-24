@@ -5,8 +5,103 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:wpfApp_bDs.Pages"
         mc:Ignorable="d"
-        Title="AnalasisDeposit" Height="450" Width="800">
+        Title="AnalasisDeposit" Height="450" Width="600" ResizeMode="NoResize"
+        >
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+            <RowDefinition Height="1"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <TextBlock Text="Название" Foreground="Gray" FontWeight="DemiBold"
+                   FontSize="14" Grid.Row="0" Grid.Column="0" Margin="30, 0, 0, 10"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <Rectangle Fill="RoyalBlue" Grid.Row="1" Grid.ColumnSpan="5" Width="566"/>
+        <TextBlock Text="Стабильный" FontSize="12" Grid.Row="2" Grid.Column="0"
+                   Margin="30, 0, 0, 0"
+                   VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <Rectangle Fill="RoyalBlue" Grid.Row="3" Grid.ColumnSpan="5" Width="566"/>
+        <TextBlock Text="Оптимальный" FontSize="12" Grid.Row="4" Grid.Column="0"
+                   Margin="30, 0, 0, 0"
+                   VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <Rectangle Fill="RoyalBlue" Grid.Row="5" Grid.ColumnSpan="5" Width="566"/>
+        <TextBlock Text="Стандарт" FontSize="12" Grid.Row="6" Grid.Column="0"
+                   Margin="30, 0, 0, 0"
+                   VerticalAlignment="Center" FontWeight="SemiBold"/>
+        <Rectangle Fill="RoyalBlue" Grid.Row="7" Grid.ColumnSpan="5" Width="566"/>
+        <TextBlock Text="Доход" Foreground="Gray" FontWeight="DemiBold"
+                   FontSize="14" Grid.Row="0" Grid.Column="1" Margin="0,0,54,10"
+                   HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="2" Grid.Column="1"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold" 
+                   x:Name="StableProfitView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="4" Grid.Column="1"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="OptimalProfitView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="6" Grid.Column="1"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="StandardProfitView"/>
+        <TextBlock Text="Сумма к концу срока" Foreground="Gray" FontWeight="DemiBold"
+                   FontSize="12" Grid.Row="0" Grid.Column="2"  Margin="24,0,0, 10"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                   TextWrapping="WrapWithOverflow"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="2" Grid.Column="2"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="StableSummaryView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="4" Grid.Column="2"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="OptimalSummaryView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="6" Grid.Column="2"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="StandardSummaryView"/>
+        <TextBlock Text="Ставка" Foreground="Gray" FontWeight="DemiBold"
+                   FontSize="12" Grid.Row="0" Grid.Column="3"  Margin="24,0,0, 10"
+                   HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="2" Grid.Column="3"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="StablePercentView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="4" Grid.Column="3"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="OptimalPercentView"/>
+        <TextBlock Text="50000 Руб." FontSize="12" Grid.Row="6" Grid.Column="3"
+                   Margin="24, 0, 0, 0" HorizontalAlignment="Left"
+                   VerticalAlignment="Center" FontWeight="SemiBold"
+                   x:Name="StandardPercentView"/>
+        <Button Background="RoyalBlue" Grid.Row="2" Grid.Column="4"
+                Content="Открыть вклад" Foreground="White" Height="20"
+                Width="90" FontSize="12" FontWeight="ExtraLight"/>
+        <Button Background="RoyalBlue" Grid.Row="4" Grid.Column="4"
+                Content="Открыть вклад" Foreground="White" Height="20"
+                Width="90" FontSize="12" FontWeight="ExtraLight"/>
+        <Button Background="RoyalBlue" Grid.Row="6" Grid.Column="4"
+                Content="Открыть вклад" Foreground="White" Height="20"
+                Width="90" FontSize="12" FontWeight="ExtraLight"/>
+        <Button Background="RoyalBlue" Grid.Row="8" Grid.ColumnSpan="5"
+                Content="Сформировать выписку" Foreground="White" Height="25"
+                Width="150" FontSize="11" FontWeight="SemiBold"/>
+        <Label Content="Деньги в каждый карман" FontStyle="Italic"
+               FontSize="20" Grid.Column="3" Grid.ColumnSpan="2"
+               Grid.Row="0" HorizontalAlignment="Right"/>
     </Grid>
 </Window>
